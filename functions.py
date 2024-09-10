@@ -26,6 +26,7 @@ def drop_columns1(df):  #Elimina las columnas de la tabla una que no son útiles
     df.drop("support_systems_access", axis = 1, inplace = True)
     df.drop("work_environment_impact", axis = 1, inplace = True)
     df.drop("online_support_usage", axis = 1, inplace = True)
+    df.drop("user_id", axis = 1, inplace = True)
 
     return df
 
@@ -54,3 +55,27 @@ def drop_columns3(df): # Elimina las columnas de la tabla tres que no son útile
     df.drop("17._how_often_do_you_look_to_seek_validation_from_features_of_social_media?", axis = 1, inplace = True)
     df.drop("19._on_a_scale_of_1_to_5,_how_frequently_does_your_interest_in_daily_activities_fluctuate?", axis = 1, inplace = True)
     return df
+
+def change_other(df):
+    df = df[df["gender"] != "Other"]
+    return df
+
+def change_gender(df):  
+    df = df[df["gender"] != "non-binary"]
+    return df
+
+def change_value(df):
+
+    genero_map = {"Male": "M", "Female": "F", "male": "M", "female": "F", "F": "F", "M": "M"}
+
+    df["gender"] = df["gender"].map(genero_map)
+
+    return df
+
+
+def merge_tables(df1, df2): # Une las tablas correspondientes
+    
+    grupo = df1.groupby("gender")
+
+
+    return dos_df
